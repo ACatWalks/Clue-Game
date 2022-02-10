@@ -1,0 +1,17 @@
+.user-controls{
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+}
+.cards{
+    display: flex;
+    flex-direction: row;
+}
+.card1, .card2, .card3, .card4, .card5{
+    padding-left: 50px;
+    padding-right: 50px;
+    height: 200px;
+    background-color: darkgray;
+    color: white;
+    padding-top: 60px;
+}
