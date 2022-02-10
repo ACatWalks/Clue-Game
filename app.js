@@ -79,6 +79,19 @@ console.log(rollDice())
 //Simulate computer moving
 
 //Add event listener to "Secret Passageway" button
+document.querySelector('#secret').addEventListener('click', () => {
+    if(user.room === 'Kitchen'){
+        user.room = 'Study'
+    } else if(user.room === 'Study'){
+        user.room = 'Kitchen'
+    } else if(user.room === 'Lounge'){
+        user.room = 'Conservatory'
+    } else if(user.room === 'Conservatory'){
+        user.room = 'Lounge'
+    } else{
+        alert('There is no secret passageway in this room');
+    }
+})
 
 //Add event listener to "Make a Suggestion" button
 
