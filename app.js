@@ -26,7 +26,6 @@ for(let s=0; s<cardsAvailable.length; s++){
 }
 
 console.log(secretEnvelope);
-console.log(cardsAvailable);
 
 //Create user object with cards, distance traveled, and room
 const user = {
@@ -34,22 +33,50 @@ const user = {
     distanceTraveled: 0,
     room: null
 }
-
+const computer ={
+    cards:[],
+    distanceTraveled: 0,
+    room: null
+}
 //Deal cards to user
-
+function dealUserCards(){
+    let userCards = [];
+    for(let c=0; c<5; c++){
+        let index = Math.floor(Math.random()*cardsAvailable.length);
+        userCards.push(cardsAvailable[index]);
+        cardsAvailable.splice(index,1);
+    }
+    user.cards = userCards;
+}
+dealUserCards();
+console.log(user.cards);
 //Automatically check off dealt cards on notebook
 
 //Deal cards to computer
-
+function dealComputerCards(){
+    let computerCards = [];
+    for(let d=0; d<5; d++){
+        let index = Math.floor(Math.random()*cardsAvailable.length);
+        computerCards.push(cardsAvailable[index]);
+        cardsAvailable.splice(index,1);
+    }
+    computer.cards = computerCards;
+}
+dealComputerCards();
+console.log(computer.cards);
+console.log(cardsAvailable);
 //Create function to simulate dice rolling
-
+function rollDice(){
+    let die1 = Math.ceil(Math.random()*6);
+    let die2 = Math.ceil(Math.random()*6);
+    return die1 + die2;
+}
+console.log(rollDice())
 //Come up with distances between rooms
 
 //Add event listener to "Move To..." button to allow user to move
 
 //Simulate computer moving
-
-//Keep track of whose turn it is
 
 //Add event listener to "Secret Passageway" button
 
