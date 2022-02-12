@@ -132,12 +132,16 @@ document.querySelector('#move').addEventListener('click', () => {
 document.querySelector('#secret').addEventListener('click', () => {
     if(user.room === 'Kitchen'){
         user.room = 'Study'
+        document.getElementById('suspectedRoom').value = 'Study'
     } else if(user.room === 'Study'){
         user.room = 'Kitchen'
+        document.getElementById('suspectedRoom').value = 'Kitchen'
     } else if(user.room === 'Lounge'){
         user.room = 'Conservatory'
+        document.getElementById('suspectedRoom').value = 'Conservatory'
     } else if(user.room === 'Conservatory'){
         user.room = 'Lounge'
+        document.getElementById('suspectedRoom').value = 'Lounge'
     } else{
         alert('There is no secret passageway in this room');
     }
