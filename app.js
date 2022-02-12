@@ -33,10 +33,9 @@ const user = {
     distanceTraveled: 0,
     room: null
 }
-const computer ={
+const computer = {
     cards:[],
-    distanceTraveled: 0,
-    room: null
+    distanceTraveled: 0
 }
 //Deal cards to user
 function dealUserCards(){
@@ -51,6 +50,19 @@ function dealUserCards(){
 dealUserCards();
 console.log(user.cards);
 //Automatically check off dealt cards on notebook
+document.querySelector('.card1').textContent = `${user.cards[0]}`
+document.querySelector('.card2').textContent = `${user.cards[1]}`
+document.querySelector('.card3').textContent = `${user.cards[2]}`
+document.querySelector('.card4').textContent = `${user.cards[3]}`
+document.querySelector('.card5').textContent = `${user.cards[4]}`
+//I looked up how to use javascript to check a box in HTML form. I found it at https://www.w3docs.com/snippets/javascript/how-to-check-and-uncheck-checkbox-with-javascript-and-jquery.html
+function check(){
+    for(let m=0; m<user.cards.length; m++){
+        let box = document.getElementById(`${user.cards[m]}`);
+        box.checked = true;
+    }
+}
+check();
 
 //Deal cards to computer
 function dealComputerCards(){
@@ -73,6 +85,18 @@ function rollDice(){
 }
 console.log(rollDice())
 //Come up with distances between rooms
+function calculateDistance(){
+    let distanceNeeded;
+    if(user.room === null){
+        distanceNeeded = 13;
+    } else if(user.room === 'Lounge' || user.room === 'Conservatory' || user.room === 'Kitchen' || user.room === 'Study'){
+        distanceNeeded = 36;
+    } else if(user.room === 'Dining Room' || user.room === 'Ballroom' || user.room === 'Billiards Room' || user.room === 'Library' || user.room === 'Hall'){
+        distanceNeeded = 25;
+    }
+    return distanceNeeded;
+}
+console.log(calculateDistance())
 
 //Add event listener to "Move To..." button to allow user to move
 
