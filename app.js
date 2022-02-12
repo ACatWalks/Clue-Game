@@ -31,7 +31,7 @@ console.log(secretEnvelope);
 const user = {
     cards: [],
     distanceTraveled: 0,
-    room: null
+    room: 'Study'
 }
 const computer = {
     cards:[],
@@ -109,6 +109,7 @@ document.querySelector('#move').addEventListener('click', () => {
         if(user.distanceTraveled + roll >= distance){
             user.room = room;
             user.distanceTraveled = 0;
+            alert(`You are now in the ${user.room}. Type in suspect and weapon, then click the suggestion button to see if your guess is correct.`)
         } else{
             alert('Not there yet! Click the move button to roll again.');
             user.distanceTraveled += roll
@@ -147,8 +148,39 @@ document.querySelector('#secret').addEventListener('click', () => {
 })
 
 //Add event listener to "Make a Suggestion" button
+document.querySelector('#suggestion').addEventListener('click', () => {
+    if(document.getElementById('suspectedSuspect').value === '' || document.getElementById('suspectedWeapon').value === ''){
+        alert('Please fill in the suspect and weapon fields before clicking the suggestion button.')
+    } else if(document.getElementById('suspectedRoom').value !== user.room){
+        alert('You must be in the room to suggest it was the scene of the murder');
+    } else if(suspects.indexOf(document.getElementById('suspectedSuspect').value) === -1 || weapons.indexOf(document.getElementById('suspectedWeapon').value) === -1){
+        alert('Please enter a valid suspect and/or weapon');
+    } else{
+        showCards();
+    }
+})
 
 //Select and show user cards to refute his/her suggestion if possible
+function showCards(){
+    let suspectedSuspect = document.getElementById('suspectedSuspect').value;
+    let suspectedWeapon = document.getElementById('suspectedWeapon').value;
+    let suspectedRoom = user.room;
+    if(secretEnvelope.indexOf(suspectedSuspect) !== -1 && secretEnvelope.indexOf(suspectedWeapon) !== -1 && secretEnvelope.indexOf(suspectedRoom) !== -1){
+        alert('I cannot prove you wrong. Now might be a good time to click the accusation button');
+    } else{
+        let cardsToShow = [];
+        if(secretEnvelope.indexOf(suspectedSuspect) === -1 && suspects.indexOf(suspectedSuspect) !== -1){
+            cardsToShow.push(suspectedSuspect);
+        }
+        if(secretEnvelope.indexOf(suspectedWeapon) === -1 && weapons.indexOf(suspectedWeapon) !== -1){
+            cardsToShow.push(suspectedWeapon);
+        }
+        if(secretEnvelope.indexOf(suspectedRoom) === -1 && rooms.indexOf(suspectedRoom) !== -1){
+            cardsToShow.push(suspectedRoom);
+        }
+        alert(`I can prove you wrong. Check off these values in your notebook: ${cardsToShow}`)
+    }
+}
 
 //Simulate computer crossing off cards on its notebook (not visible to user)
 
