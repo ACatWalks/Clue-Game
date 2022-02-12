@@ -31,7 +31,7 @@ console.log(secretEnvelope);
 const user = {
     cards: [],
     distanceTraveled: 0,
-    room: 'Study'
+    room: null
 }
 const computer = {
     cards:[],
@@ -114,20 +114,16 @@ document.querySelector('#move').addEventListener('click', () => {
             alert('Not there yet! Click the move button to roll again.');
             user.distanceTraveled += roll
         }
-        console.log(user.room);
-        console.log(user.distanceTraveled);
     }
     //Simulate computer moving
     let computerRoll = rollDice();
-    console.log(computerRoll);
     if(computer.distanceTraveled + computerRoll >= 18){
-        //addCards();
+        addCards();
         computer.distanceTraveled = 0;
     } else{
         computer.distanceTraveled += computerRoll;
-        console.log(computer.distanceTraveled);
     }
-    
+    computerAccusation();
 })
 
 
@@ -183,7 +179,39 @@ function showCards(){
 }
 
 //Simulate computer crossing off cards on its notebook (not visible to user)
+function addCards(){
+    let cardsAvailableToComputer = cardsAvailable.concat(user.cards);
+    let randomCardIndex = Math.floor(Math.random()*14);
+    let randomCard = cardsAvailableToComputer[randomCardIndex];
+    if(computer.cards.indexOf(randomCard) === -1){
+        computer.cards.push(randomCard);
+        console.log(computer.cards);
+    }
+}
 
 //Add event listener to "Make an Accusation" button
+let wins = 0;
+let losses = 0;
+document.querySelector('#accusation').addEventListener('click', () => {
+    let suspectedSuspect = document.getElementById('suspectedSuspect').value;
+    let suspectedWeapon = document.getElementById('suspectedWeapon').value;
+    let suspectedRoom = user.room;
+    if(suspectedSuspect === selectedSuspect && suspectedWeapon === selectedWeapon && suspectedRoom === selectedRoom){
+        alert('You win! Congratulations on helping put a dangerous criminal behind bars!');
+        wins ++
+        document.querySelector('#wins').textContent = `Wins: ${wins}`
+    } else{
+        alert('You got it wrong! You are out of the game.');
+        losses ++
+        document.querySelector('#losses').textContent = `Losses: ${losses}`
+    }
+})
 
 //Simulate computer making accusation
+function computerAccusation(){
+    if(computer.cards.length === 19){
+        alert('The computer beat you to it!');
+        losses ++
+        document.querySelector('#losses').textContent = `Losses: ${losses}`
+    }
+}
