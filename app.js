@@ -48,7 +48,6 @@ function dealUserCards(){
     user.cards = userCards;
 }
 dealUserCards();
-console.log(user.cards);
 //Automatically check off dealt cards on notebook
 document.querySelector('.card1').textContent = `${user.cards[0]}`
 document.querySelector('.card2').textContent = `${user.cards[1]}`
@@ -83,7 +82,6 @@ function rollDice(){
     let die2 = Math.ceil(Math.random()*6);
     return die1 + die2;
 }
-console.log(rollDice())
 //Come up with distances between rooms
 function calculateDistance(){
     let distanceNeeded;
@@ -96,11 +94,42 @@ function calculateDistance(){
     }
     return distanceNeeded;
 }
-console.log(calculateDistance())
 
 //Add event listener to "Move To..." button to allow user to move
+document.querySelector('#move').addEventListener('click', () => {
+    //Credit goes to https://skillforge.com/how-to-get-user-input-in-javascript/ for showing me how to extract the value the user types in
+    let room = document.getElementById('suspectedRoom').value;
+    if(!room){
+        alert('Please enter the room you would like to go to');
+    } else if(rooms.indexOf(room) === -1){
+        alert('That is not a valid room. Please select Hall, Lounge, Dining Room, Kitchen, Ballroom, Conservatory, Billiards Room, Library, or Study');
+    } else{
+        let roll = rollDice();
+        let distance = calculateDistance();
+        if(user.distanceTraveled + roll >= distance){
+            user.room = room;
+            user.distanceTraveled = 0;
+        } else{
+            alert('Not there yet! Click the move button to roll again.');
+            user.distanceTraveled += roll
+        }
+        console.log(user.room);
+        console.log(user.distanceTraveled);
+    }
+    //Simulate computer moving
+    let computerRoll = rollDice();
+    console.log(computerRoll);
+    if(computer.distanceTraveled + computerRoll >= 18){
+        //addCards();
+        computer.distanceTraveled = 0;
+    } else{
+        computer.distanceTraveled += computerRoll;
+        console.log(computer.distanceTraveled);
+    }
+    
+})
 
-//Simulate computer moving
+
 
 //Add event listener to "Secret Passageway" button
 document.querySelector('#secret').addEventListener('click', () => {
