@@ -14,4 +14,11 @@
     background-color: darkgray;
     color: white;
     padding-top: 60px;
+    font-family: 'Lobster', cursive;
+}
+body{
+    display: flex;
+}
+h2{
+    font-family: 'Lobster', cursive;
 }

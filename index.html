@@ -6,91 +6,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amanda's Online Clue Game</title>
     <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">    
     <script src="app.js" defer></script>
 </head>
 <body>
-    <div class="user-controls">
-        <button id="move">Move To Room</button>
-        <button id="secret">Take Secret Passageway</button>
-        <button id="suggestion">Make a Suggestion</button>
-        <button id="accusation">Make an Accusation</button>
-    </div>
-    <div class="main">
-        <form>
-            <label for="suspect">Suspect:</label>
-            <input type="text" id="suspectedSuspect" name="suspect">
-            <label for="weapon">Weapon:</label>
-            <input type="text" id="suspectedWeapon" name="weapon">
-            <label for="room">Room:</label>
-            <input type="text" id="suspectedRoom" name="room">
-            <select name="level" id="level">
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-            </select>
-        </form>
-        <div class="cards">
-            <div class="card1">Card 1</div>
-            <div class="card2">Card 2</div>
-            <div class="card3">Card 3</div>
-            <div class="card4">Card 4</div>
-            <div class="card5">Card 5</div>
+    <div class="left">
+        <div class="user-controls">
+            <button id="move">Move To Room</button>
+            <button id="secret">Take Secret Passageway</button>
+            <button id="suggestion">Make a Suggestion</button>
+            <button id="accusation">Make an Accusation</button>
+        </div>
+        <div class="main">
+            <form>
+                <label for="suspect">Suspect:</label>
+                <input type="text" id="suspectedSuspect" name="suspect">
+                <label for="weapon">Weapon:</label>
+                <input type="text" id="suspectedWeapon" name="weapon">
+                <label for="room">Room:</label>
+                <input type="text" id="suspectedRoom" name="room">
+                <select name="level" id="level">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </form>
+            <div class="cards">
+                <div class="card1">Card 1</div>
+                <div class="card2">Card 2</div>
+                <div class="card3">Card 3</div>
+                <div class="card4">Card 4</div>
+                <div class="card5">Card 5</div>
+            </div>
         </div>
     </div>
-    <div class="notebook">
-        <form>
-            <h2>Suspects</h2>
-            <input type="checkbox" id="Colonel Mustard" name="Colonel Mustard" value="Colonel Mustard">
-            <label for="Colonel Mustard">Colonel Mustard</label><br>
-            <input type="checkbox" id="Professor Plum" name="Professor Plum" value="Professor Plum">
-            <label for="Professor Plum">Professor Plum</label><br>
-            <input type="checkbox" id="Mr. Green" name="Mr. Green" value="Mr. Green">
-            <label for="MrGreen">Mr. Green</label><br>
-            <input type="checkbox" id="Mrs. Peacock" name="Mrs. Peacock" value="Mrs. Peacock">
-            <label for="Mrs. Peacock">Mrs. Peacock</label><br>
-            <input type="checkbox" id="Miss Scarlet" name="Miss Scarlet" value="Miss Scarlet">
-            <label for="Miss Scarlet">Miss Scarlet</label><br>
-            <input type="checkbox" id="Mrs. White" name="Mrs. White" value="Mrs. White">
-            <label for="Mrs. White">Mrs. White</label><br>
-            <h2>Weapons</h2>
-            <input type="checkbox" id="Knife" name="Knife" value="Knife">
-            <label for="Knife">Knife</label><br>
-            <input type="checkbox" id="Candlestick" name="Candlestick" value="Candlestick">
-            <label for="Candlestick">Candlestick</label><br>
-            <input type="checkbox" id="Revolver" name="Revolver" value="Revolver">
-            <label for="Revolver">Revolver</label><br>
-            <input type="checkbox" id="Rope" name="Rope" value="Rope">
-            <label for="Rope">Rope</label><br>
-            <input type="checkbox" id="Lead Pipe" name="Lead Pipe" value="Lead Pipe">
-            <label for="Lead Pipe">Lead Pipe</label><br>
-            <input type="checkbox" id="Wrench" name="Wrench" value="Wrench">
-            <label for="Wrench">Wrench</label><br>
-            <input type="checkbox" id="Poison" name="Poison" value="Poison">
-            <label for="Poison">Poison</label><br>
-            <h2>Rooms</h2>
-            <input type="checkbox" id="Hall" name="Hall" value="Hall">
-            <label for="Hall">Hall</label><br>
-            <input type="checkbox" id="Lounge" name="Lounge" value="Lounge">
-            <label for="Lounge">Lounge</label><br>
-            <input type="checkbox" id="Dining Room" name="Dining Room" value="Dining Room">
-            <label for="Dining Room">Dining Room</label><br>
-            <input type="checkbox" id="Kitchen" name="Kitchen" value="Kitchen">
-            <label for="Kitchen">Kitchen</label><br>
-            <input type="checkbox" id="Ballroom" name="Ballroom" value="Ballroom">
-            <label for="Ballroom">Ballroom</label><br>
-            <input type="checkbox" id="Conservatory" name="Conservatory" value="Conservatory">
-            <label for="Conservatory">Conservatory</label><br>
-            <input type="checkbox" id="Billiards Room" name="Billiards Room" value="Billiards Room">
-            <label for="Billiards Room">Billiards Room</label><br>
-            <input type="checkbox" id="Library" name="Library" value="Library">
-            <label for="Library">Library</label><br>
-            <input type="checkbox" id="Study" name="Study" value="Study">
-            <label for="Study">Study</label><br>
-        </form>
-        <div class="scorecard">
-            <h2 id="wins">Wins: 0</h2>
-            <h2 id="losses">Losses: 0</h2>
+    <div class="right">
+        <div class="notebook">
+            <form>
+                <h2>Suspects</h2>
+                <input type="checkbox" id="Colonel Mustard" name="Colonel Mustard" value="Colonel Mustard">
+                <label for="Colonel Mustard">Colonel Mustard</label><br>
+                <input type="checkbox" id="Professor Plum" name="Professor Plum" value="Professor Plum">
+                <label for="Professor Plum">Professor Plum</label><br>
+                <input type="checkbox" id="Mr. Green" name="Mr. Green" value="Mr. Green">
+                <label for="MrGreen">Mr. Green</label><br>
+                <input type="checkbox" id="Mrs. Peacock" name="Mrs. Peacock" value="Mrs. Peacock">
+                <label for="Mrs. Peacock">Mrs. Peacock</label><br>
+                <input type="checkbox" id="Miss Scarlet" name="Miss Scarlet" value="Miss Scarlet">
+                <label for="Miss Scarlet">Miss Scarlet</label><br>
+                <input type="checkbox" id="Mrs. White" name="Mrs. White" value="Mrs. White">
+                <label for="Mrs. White">Mrs. White</label><br>
+                <h2>Weapons</h2>
+                <input type="checkbox" id="Knife" name="Knife" value="Knife">
+                <label for="Knife">Knife</label><br>
+                <input type="checkbox" id="Candlestick" name="Candlestick" value="Candlestick">
+                <label for="Candlestick">Candlestick</label><br>
+                <input type="checkbox" id="Revolver" name="Revolver" value="Revolver">
+                <label for="Revolver">Revolver</label><br>
+                <input type="checkbox" id="Rope" name="Rope" value="Rope">
+                <label for="Rope">Rope</label><br>
+                <input type="checkbox" id="Lead Pipe" name="Lead Pipe" value="Lead Pipe">
+                <label for="Lead Pipe">Lead Pipe</label><br>
+                <input type="checkbox" id="Wrench" name="Wrench" value="Wrench">
+                <label for="Wrench">Wrench</label><br>
+                <input type="checkbox" id="Poison" name="Poison" value="Poison">
+                <label for="Poison">Poison</label><br>
+                <h2>Rooms</h2>
+                <input type="checkbox" id="Hall" name="Hall" value="Hall">
+                <label for="Hall">Hall</label><br>
+                <input type="checkbox" id="Lounge" name="Lounge" value="Lounge">
+                <label for="Lounge">Lounge</label><br>
+                <input type="checkbox" id="Dining Room" name="Dining Room" value="Dining Room">
+                <label for="Dining Room">Dining Room</label><br>
+                <input type="checkbox" id="Kitchen" name="Kitchen" value="Kitchen">
+                <label for="Kitchen">Kitchen</label><br>
+                <input type="checkbox" id="Ballroom" name="Ballroom" value="Ballroom">
+                <label for="Ballroom">Ballroom</label><br>
+                <input type="checkbox" id="Conservatory" name="Conservatory" value="Conservatory">
+                <label for="Conservatory">Conservatory</label><br>
+                <input type="checkbox" id="Billiards Room" name="Billiards Room" value="Billiards Room">
+                <label for="Billiards Room">Billiards Room</label><br>
+                <input type="checkbox" id="Library" name="Library" value="Library">
+                <label for="Library">Library</label><br>
+                <input type="checkbox" id="Study" name="Study" value="Study">
+                <label for="Study">Study</label><br>
+            </form>
+            <div class="scorecard">
+                <h2 id="wins">Wins: 0</h2>
+                <h2 id="losses">Losses: 0</h2>
+            </div>
         </div>
-    </div>
+    </div> 
 </body>
 </html>
