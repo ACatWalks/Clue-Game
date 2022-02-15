@@ -117,7 +117,8 @@ document.querySelector('#move').addEventListener('click', () => {
     }
     //Simulate computer moving
     let computerRoll = rollDice();
-    if(computer.distanceTraveled + computerRoll >= 18){
+    let computerDistance = calculateComputerDistance();
+    if(computer.distanceTraveled + computerRoll >= computerDistance){
         addCards();
         computer.distanceTraveled = 0;
     } else{
@@ -189,6 +190,7 @@ function addCards(){
     let randomCard = cardsAvailableToComputer[randomCardIndex];
     if(computer.cards.indexOf(randomCard) === -1){
         computer.cards.push(randomCard);
+        cardsAvailableToComputer.splice(randomCardIndex, 1);
         console.log(computer.cards);
     }
 }
@@ -218,4 +220,21 @@ function computerAccusation(){
         losses ++
         document.querySelector('#losses').textContent = `Losses: ${losses}`
     }
+}
+//Account for user selected challenge level
+function calculateComputerDistance(){
+    let level = document.querySelector('#level').value;
+    let computerDistanceNeeded;
+    switch(level){
+        case 'easy':
+            computerDistanceNeeded = 18;
+        break;
+        case 'medium':
+            computerDistanceNeeded = 12;
+        break;
+        case 'hard':
+            computerDistanceNeeded = 1;
+        break;
+    }
+    return computerDistanceNeeded;
 }
