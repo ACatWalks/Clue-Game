@@ -184,14 +184,15 @@ function showCards(){
 }
 
 //Simulate computer crossing off cards on its notebook (not visible to user)
+let cardsAvailableToComputer = cardsAvailable.concat(user.cards);
 function addCards(){
-    let cardsAvailableToComputer = cardsAvailable.concat(user.cards);
-    let randomCardIndex = Math.floor(Math.random()*14);
+    let randomCardIndex = Math.floor(Math.random()*cardsAvailableToComputer.length);
     let randomCard = cardsAvailableToComputer[randomCardIndex];
     if(computer.cards.indexOf(randomCard) === -1){
         computer.cards.push(randomCard);
         cardsAvailableToComputer.splice(randomCardIndex, 1);
         console.log(computer.cards);
+        console.log(cardsAvailableToComputer);
     }
 }
 
