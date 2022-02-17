@@ -1,24 +1,52 @@
 .user-controls{
     display: flex;
-    flex-direction: column;
-    width: 33%;
+    justify-content: space-evenly;
 }
 .cards{
     display: flex;
     flex-direction: row;
 }
 .card1, .card2, .card3, .card4, .card5{
-    padding-left: 50px;
-    padding-right: 50px;
+    padding: 200px 50px 100px 50px;
     height: 200px;
+    width: 75px;
+    text-align: center;
     background-color: darkgray;
     color: white;
-    padding-top: 60px;
     font-family: 'Lobster', cursive;
+    margin-right: 30px;
+    margin-top: 25px;
+    box-shadow: 5px 10px black;
+    opacity: 0.9;
 }
 body{
+    background-image: url('./assets/fabian-wiktor-MBKFuFqlMwo-unsplash.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container{
     display: flex;
 }
 h2{
     font-family: 'Lobster', cursive;
+}
+.notebook{
+    background-color: white;
+    border: 1px solid black;
+}
+button{
+    border-radius: 25px;
+    padding: 10px 25px;
+}
+.left{
+    display: flex;
+    flex-direction: column;
+}
+.right{
+    display: flex;
+    justify-content: end;
+}
+footer{
+    text-align: center;
+    color: whitesmoke;
 }
