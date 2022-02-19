@@ -199,6 +199,8 @@ function addCards(){
 //Add event listener to "Make an Accusation" button
 let wins = 0;
 let losses = 0;
+
+
 document.querySelector('#accusation').addEventListener('click', () => {
     let suspectedSuspect = document.getElementById('suspectedSuspect').value;
     let suspectedWeapon = document.getElementById('suspectedWeapon').value;
@@ -220,6 +222,7 @@ function computerAccusation(){
         alert('The computer beat you to it!');
         losses ++
         document.querySelector('#losses').textContent = `Losses: ${losses}`
+        localStorage.setItem('losses', `${losses}`);
     }
 }
 //Account for user selected challenge level

@@ -55,3 +55,29 @@ footer{
     display: flex;
     justify-content: center;
 }
+
+@media screen and (max-width: 480px){
+    .user-controls{
+        flex-direction: column;
+        justify-content: center;
+    }
+    .cards{
+        display: none;
+    }
+    .container{
+        flex-direction: column;
+    }
+    button{
+        padding: 5px 15px;
+        margin-bottom: 15px;
+    }
+    .right{
+        justify-content: center;
+    }
+    .form-container{
+        flex-wrap: wrap;
+        width: 150px;
+        margin-left: 125px;
+        margin-bottom: 25px;;
+    }
+}
