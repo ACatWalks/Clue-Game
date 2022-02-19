@@ -25,7 +25,6 @@ for(let s=0; s<cardsAvailable.length; s++){
     }
 }
 
-console.log(secretEnvelope);
 
 //Create user object with cards, distance traveled, and room
 const user = {
@@ -37,6 +36,7 @@ const computer = {
     cards:[],
     distanceTraveled: 0
 }
+
 //Deal cards to user
 function dealUserCards(){
     let userCards = [];
@@ -48,6 +48,7 @@ function dealUserCards(){
     user.cards = userCards;
 }
 dealUserCards();
+
 //Automatically check off dealt cards on notebook
 document.querySelector('.card1').textContent = `${user.cards[0]}`
 document.querySelector('.card2').textContent = `${user.cards[1]}`
@@ -74,14 +75,14 @@ function dealComputerCards(){
     computer.cards = computerCards;
 }
 dealComputerCards();
-console.log(computer.cards);
-console.log(cardsAvailable);
+
 //Create function to simulate dice rolling
 function rollDice(){
     let die1 = Math.ceil(Math.random()*6);
     let die2 = Math.ceil(Math.random()*6);
     return die1 + die2;
 }
+
 //Come up with distances between rooms
 function calculateDistance(){
     let distanceNeeded;
@@ -242,3 +243,31 @@ function calculateComputerDistance(){
     }
     return computerDistanceNeeded;
 }
+//Choose music based on difficulty level
+function chooseMusic(){
+    let level = document.querySelector('#level').value;
+    let soundURL;
+    switch(level){
+        case 'easy':
+            soundURL = './assets/music/soundscrate-another-late-night.mp3'
+        break;
+        case 'medium':
+            soundURL = './assets/music/soundscrate-tread-carefully.mp3'
+        break;
+        case 'hard':
+            soundURL = './assets/music/Bensound - Sound Of Silence - Countdown/Sound Of Silence - Countdown.mp3'
+        break;
+    }
+    return soundURL;
+}
+const music = new Audio(chooseMusic());
+
+window.onload = () => {
+    music.play();
+    music.loop = true;
+}
+document.getElementById('level').addEventListener('change', () => {
+    music.pause();
+    music.src = chooseMusic();
+    music.play();
+})
