@@ -223,7 +223,6 @@ function computerAccusation(){
         alert('The computer beat you to it!');
         losses ++
         document.querySelector('#losses').textContent = `Losses: ${losses}`
-        localStorage.setItem('losses', `${losses}`);
     }
 }
 //Account for user selected challenge level
@@ -260,6 +259,7 @@ function chooseMusic(){
     }
     return soundURL;
 }
+//Credit goes to https://www.delftstack.com/howto/javascript/play-audio-javascript/#:~:text=Use%20.play%28%29%20to%20Play%20Audio%20Files%20in%20JavaScript.,Audio%28%27adf.wav%27%29%3B%20music.play%28%29%3B%20music.loop%20%3Dtrue%3B%20music.playbackRate%20%3D%202%3B%20music.pause%28%29%3Bqqazszdgfbgtyj for showing me how to use JS to play music
 const music = new Audio(chooseMusic());
 
 window.onload = () => {
