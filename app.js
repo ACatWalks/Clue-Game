@@ -37,17 +37,18 @@ const computer = {
     distanceTraveled: 0
 }
 
-//Deal cards to user
-function dealUserCards(){
-    let userCards = [];
-    for(let c=0; c<5; c++){
+//Deal cards to both user and computer
+function dealCards(player) {
+    let deal = [];
+    for(let x=0; x<5; x++) {
         let index = Math.floor(Math.random()*cardsAvailable.length);
-        userCards.push(cardsAvailable[index]);
+        deal.push(cardsAvailable[index]);
         cardsAvailable.splice(index,1);
     }
-    user.cards = userCards;
+    player.cards = deal
 }
-dealUserCards();
+dealCards(user)
+dealCards(computer)
 
 //Automatically check off dealt cards on notebook
 document.querySelector('.card1').textContent = `${user.cards[0]}`
@@ -63,18 +64,6 @@ function check(){
     }
 }
 check();
-
-//Deal cards to computer
-function dealComputerCards(){
-    let computerCards = [];
-    for(let d=0; d<5; d++){
-        let index = Math.floor(Math.random()*cardsAvailable.length);
-        computerCards.push(cardsAvailable[index]);
-        cardsAvailable.splice(index,1);
-    }
-    computer.cards = computerCards;
-}
-dealComputerCards();
 
 //Create function to simulate dice rolling
 function rollDice(){
@@ -100,21 +89,15 @@ function calculateDistance(){
 document.querySelector('#move').addEventListener('click', () => {
     //Credit goes to https://skillforge.com/how-to-get-user-input-in-javascript/ for showing me how to extract the value the user types in
     let room = document.getElementById('suspectedRoom').value;
-    if(!room){
-        alert('Please enter the room you would like to go to');
-    } else if(rooms.indexOf(room) === -1){
-        alert('That is not a valid room. Please select Hall, Lounge, Dining Room, Kitchen, Ballroom, Conservatory, Billiards Room, Library, or Study');
+    let roll = rollDice();
+    let distance = calculateDistance();
+    if(user.distanceTraveled + roll >= distance){
+        user.room = room;
+        user.distanceTraveled = 0;
+        alert(`You are now in the ${user.room}. Select suspect and weapon, then click the suggestion button to see if your guess is correct.`)
     } else{
-        let roll = rollDice();
-        let distance = calculateDistance();
-        if(user.distanceTraveled + roll >= distance){
-            user.room = room;
-            user.distanceTraveled = 0;
-            alert(`You are now in the ${user.room}. Type in suspect and weapon, then click the suggestion button to see if your guess is correct.`)
-        } else{
-            alert('Not there yet! Click the move button to roll again.');
-            user.distanceTraveled += roll
-        }
+        alert('Not there yet! Click the move button to roll again.');
+        user.distanceTraveled += roll
     }
     //Simulate computer moving
     let computerRoll = rollDice();
@@ -151,12 +134,8 @@ document.querySelector('#secret').addEventListener('click', () => {
 
 //Add event listener to "Make a Suggestion" button
 document.querySelector('#suggestion').addEventListener('click', () => {
-    if(document.getElementById('suspectedSuspect').value === '' || document.getElementById('suspectedWeapon').value === ''){
-        alert('Please fill in the suspect and weapon fields before clicking the suggestion button.')
-    } else if(document.getElementById('suspectedRoom').value !== user.room){
+    if(document.getElementById('suspectedRoom').value !== user.room){
         alert('You must be in the room to suggest it was the scene of the murder');
-    } else if(suspects.indexOf(document.getElementById('suspectedSuspect').value) === -1 || weapons.indexOf(document.getElementById('suspectedWeapon').value) === -1){
-        alert('Please enter a valid suspect and/or weapon');
     } else{
         showCards();
     }
